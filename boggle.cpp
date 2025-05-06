@@ -101,18 +101,18 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 
 	std::string newWord = word;
 	
-	newWord += board[r][c];
+	newWord.push_back(board[r][c]);
+
 	//std::cout << newWord << std::endl;
 
-	bool isPrefix = true;
-
-	if(prefix.find(newWord) == prefix.end()){
-		isPrefix = false;
+	bool isPrefix = false;
+	if(prefix.find(newWord) != prefix.end()){
+		isPrefix = true;
 	}
 
-	bool isWord = true;
-	if(dict.find(newWord) == dict.end()){
-		isWord = false;
+	bool isWord = false;
+	if(dict.find(newWord) != dict.end()){
+		isWord = true;
 	}
 
 	if (!isWord){

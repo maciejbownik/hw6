@@ -5,6 +5,8 @@
 #include <cmath>
 #include <random>
 #include <chrono>
+#include <ctime>
+#include <cstdlib>
 
 typedef std::size_t HASH_INDEX_T;
 
@@ -30,9 +32,10 @@ struct MyStringHash {
             if(startPos < 0) startPos = 0;
 
             int groupSize;
+						
             if(k.length() < 6){
                 groupSize = k.length();
-            } else if(group == numGroups - 1 and k.length() % 6 != 0){
+            } else if((group == numGroups - 1) and (k.length() % 6 != 0)){
                 groupSize = k.length() % 6;
             } else {
                 groupSize = 6;
@@ -46,7 +49,7 @@ struct MyStringHash {
                 value = value * 36 + charValue;
             }
 
-            w[4 - /* numGroups + */ group] = value;
+            w[4 - group] = value;
         }
 
         unsigned long long result = 0;
